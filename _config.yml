@@ -1,11 +1,11 @@
-title: How to use Net.Create
+title: Net.Create Documentation
 description: User documentation for adding, editing and analyzing information using Net.Create, a network analysis software package that allows simultaneous data entry and live network visualization.
 theme: just-the-docs
 
 url: https://netcreate.org/netcreate-userdocs
 
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  Net.Create Home: https://www.netcreate.org
 
 color_scheme: light
 
@@ -16,6 +16,7 @@ baseurl: /netcreate-userdocs
 # This lets you specify where most images are stored without having to manually type each image url. Use ""{{site.url}}{{site.baseurl}}/filename.html" to link to files and "{{site.url}}{{site.baseurl}}{{site.imageurl}}/imagename.jpg" to link to images.
 imageurl: /assets/images
 gifurl: /assets/videos
+logo: logomark.svg
 
 #Github Repository
 repository: netcreateorg/netcreate-userdocs
