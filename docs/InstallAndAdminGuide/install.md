@@ -1,10 +1,10 @@
 ---
-title: Installing and Administrating Net.Create
+title: Installing Net.Create
 layout: default
 nav_order: 6
 ---
 
-# Installing and Administrating Net.Create
+# Installing Net.Create
 
 ## Current Process
 
