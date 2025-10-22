@@ -1,75 +1,57 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
 name: Deploy Jekyll site to Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # --- Begin ubuntu-24.04 workaround: preinstall Ruby into toolcache ---
-      - name: Preinstall Ruby into toolcache (ubuntu-24.04 workaround)
-        if: startsWith(runner.os, 'Linux')
-        shell: bash
-        run: |
-          set -euxo pipefail
-          VER=3.1.4
-          DEST=/opt/hostedtoolcache/Ruby/$VER/x64
-
-          if [ -f "$DEST.complete" ]; then
-            echo "Ruby $VER already installed in toolcache."
-            exit 0
-          fi
-
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            build-essential libssl-dev zlib1g-dev libreadline-dev libyaml-dev \
-            libgdbm-dev libncurses5-dev libffi-dev libdb-dev uuid-dev ca-certificates git
-
-          git clone --depth=1 https://github.com/rbenv/ruby-build.git /tmp/ruby-build
-          sudo mkdir -p "$DEST"
-          sudo /tmp/ruby-build/bin/ruby-build "$VER" "$DEST"
-
-          sudo chmod -R a+rX /opt/hostedtoolcache/Ruby
-          sudo touch "$DEST.complete"
-
-          "$DEST/bin/ruby" -v
-      # --- End workaround ---
-
       - name: Setup Ruby
-        uses: ruby/setup-ruby@8575951200e472d5f2d95c625da0c7bec8217c42 # v1.161.0
+        uses: ruby/setup-ruby@086ffb1a2090c870a3f881cc91ea83aa4243d408 # v1.195.0
         with:
-          ruby-version: '3.1.4'      # ensure it matches the preinstalled version
-          bundler-cache: true
-          cache-version: 0
-
+          ruby-version: '3.1' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-
       - name: Build with Jekyll
+        # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-
       - name: Upload artifact
+        # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
 
+  # Deployment job
   deploy:
     environment:
       name: github-pages
