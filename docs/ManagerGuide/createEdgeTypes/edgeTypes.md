@@ -1,5 +1,5 @@
 ---
-title: Creating Edge Types
+title: Adding and Editing Edge Types
 layout: default
 parent: Managing Net.Create
 nav_order: 2
@@ -7,22 +7,15 @@ nav_order: 2
 
 # How to Create a New Edge Type
 
-1. Click on the "More..." tab, then "Edit Template," and select Edit Edge Types.
+Once you've entered your login password, you'll find the "template" option in the yellow Admin panel.
 
-![]({{site.url}}{{site.baseurl}}{{site.imageurl}}/edgetypeEditBox.png)
+Click the "Edge Definitions" section to access the edge-editing controls.
 
-{:style="counter-reset:none"}
-1. Click on "Add Row:
+1. Click in the node-label fields to change Edge Type labels
+1. Click on the color-square icon to the left of each edge-type label to change the color of that edge type.
+1. Use the "Delete" button next to the node types you don't want.
+1. Use the "Add" button if you accidentally delete too many rows.
 
-![]({{site.url}}{{site.baseurl}}{{site.imageurl}}/nodetypeAddBox.png)
+***When you're done, click the "Save Settings Changes" at the top of the admin panel to save your changes.***
 
-{:style="counter-reset:none"}
-1. Assign the Edge Type a Label and a Color.
-*	Note that the label names are case sensitive (e.g. "Person" will be different from "person")
-
-![]({{site.url}}{{site.baseurl}}{{site.imageurl}}/nodetypeColorLabel.png)
-
-{:style="counter-reset:none"}
-1. Once finished, be sure to save changes. 
-
-![]({{site.url}}{{site.baseurl}}{{site.imageurl}}/nodetypeSaveChanges.png)
+![]({{site.baseurl}}{{site.imageurl}}/manageEdgeTypes.gif)
